@@ -1,0 +1,16 @@
+[
+  {
+    "id": 0,
+    "name": "ahmad",
+    "email": "ahmad@exam.com",
+    "password": "123456",
+    "phone": "09210000000"
+  },
+  {
+    "id": 1,
+    "name": "ali",
+    "email": "ali@exam.com",
+    "password": "000000",
+    "phone": "09330000000"
+  }
+]
