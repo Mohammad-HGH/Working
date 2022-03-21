@@ -7,81 +7,129 @@
 * - password
 * After getting this details from user, we store it on our local DB (./DB/DB.json)
  */
-import { useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import {useState} from "react";
+import {Button, Form, Modal} from "react-bootstrap";
+import data from "./DB/DB.json";
 
-const ModalAlert = ( props ) => {
-    const [ show, setShow ] = useState( false );
-    const handleClose = () => setShow( false );
-    const handleShow = () => setShow( true );
-    const onFormSubmit = e => {
-        e.preventDefault()
-        const formData = new FormData( e.target ),
-            formDataObj = Object.fromEntries( formData.entries() )
-        console.log( formDataObj )
+
+
+function ModalAlert(props) {
+    // Toggle Show & Close Modal.
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    // set the initial state (an array with 1 object to start (this can be an empty object to start))
+    // inject stored data in users
+    const [users, setUsers] = useState(data);
+
+    // state to get name
+    const [name, setName] = useState('')
+
+    // state to get email
+    const [email, setEmail] = useState('')
+
+    // state to get phone num
+    const [phone, setPhone] = useState('')
+
+    // state to get password
+    const [password, setPassword] = useState('')
+
+    // declare the function
+    function handleAddNewUser(e) {
+        // prevent loading page
+        e.preventDefault();
+        // it's important to not mutate state directly, so here we are creating a copy of the current state using the spread syntax
+        const updateUsers = [// copy the current users state
+            ...users, // now you can add a new object to add to the array
+            {
+                // using the length of the array for a unique id
+                id: users.length + 1, // adding a new name
+                name: name, // adding a new email
+                email: email, // new password
+                password: password, // new phone num
+                phone: phone
+            }];
+        // update the state to the updatedUsers
+        setUsers(updateUsers);
     }
-    return ( <>
-        <Button variant="primary" className={ props.btnCat } onClick={ handleShow }>
-            <span className="text-white">{ props.text }</span>
-            <i className={ props.icon }/>
-        </Button>
 
-        <Modal show={ show } onHide={ handleClose }>
-            <Modal.Header closeButton>
-                <Modal.Title>
-                    پنل عضویت
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Form onSubmit={ onFormSubmit }>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>نام کاربری:</Form.Label>
-                        <Form.Control type="text" placeholder="نام"/>
-                        <Form.Text className="text-muted">
-                            لطفا کیبورد خود را در حالت انگلیسی بگذارید
-                        </Form.Text>
-                    </Form.Group>
+    /* return */
+    return (
+        <>
+            <Button variant="primary" className={props.btnCat} onClick={handleShow}>
+                <span className="text-white">{props.text}</span>
+                <i className={props.icon}/>
+            </Button>
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>
-                            ایمیل:
-                        </Form.Label>
-                        <Form.Control type="email" placeholder="ایمیل"/>
-                    </Form.Group>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>
+                        پنل عضویت
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {/* end - edit form */}
+                    <Form>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label>نام کاربری:</Form.Label>
+                            <Form.Control onChange={e => setName(e.target.value)} type="text" placeholder="نام"/>
+                            <Form.Text className="text-muted">
+                                لطفا کیبورد خود را در حالت انگلیسی بگذارید
+                            </Form.Text>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>
+                                ایمیل:
+                            </Form.Label>
+                            <Form.Control onChange={e => setEmail(e.target.value)} type="email" placeholder="ایمیل"/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>
+                                شماره تلفن:
+                            </Form.Label>
+                            <Form.Control onChange={e => setPhone(e.target.value)} type="tel"
+                                          placeholder="09120000000"/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>
+                                کلمه عبور:
+                            </Form.Label>
+                            <Form.Control onChange={e => setPassword(e.target.value)} type="password"
+                                          placeholder="پسورد"/>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                            <Form.Check type="checkbox" label="مرا به خاطر بسپار"/>
+                        </Form.Group>
+                    </Form>
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>
-                            شماره تلفن:
-                        </Form.Label>
-                        <Form.Control type="tel" placeholder="09120000000"/>
-                    </Form.Group>
+                    {/*<ul>*/}
+                    {/*    /!* map over the users array *!/*/}
+                    {/*    {users.map((user) => (// display a <div> element with the user.name and user.type*/}
+                    {/*        // parent element needs to have a unique key*/}
+                    {/*        <div key={user.id}>*/}
+                    {/*            <p>{user.name}</p>*/}
+                    {/*        </div>))}*/}
+                    {/*</ul>*/}
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>
-                            کلمه عبور:
-                        </Form.Label>
-                        <Form.Control type="password" placeholder="پسورد"/>
-                    </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="مرا به خاطر بسپار"/>
-                    </Form.Group>
-                </Form>
-            </Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={ handleClose }>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
                         <span className="text-white">
                             بستن
                         </span>
-                </Button>
-                <Button variant="primary" type="submit">
+                    </Button>
+                    <Button variant="primary" type="submit" onClick={handleAddNewUser}>
                     <span className="text-white">
                             ثبت نام
                         </span>
-                </Button>
-            </Modal.Footer>
-        </Modal>
-    </> );
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
+    );
 }
+
 
 export default ModalAlert;

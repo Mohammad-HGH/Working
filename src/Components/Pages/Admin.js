@@ -6,6 +6,7 @@ import { useTable, useSortBy } from 'react-table'
 import data from '../DB/DB.json'
 
 
+
 const Styles = styled.div`
   padding: 1rem;
   display: flex;
@@ -99,7 +100,7 @@ function Table( { columns, data } ) {
     )
 }
 
-const Admin = () => {
+const Admin = (props) => {
     const columns = [
         {
             Header: 'Name',
@@ -115,19 +116,23 @@ const Admin = () => {
             accessor: 'phone'
         }
     ]
+
     const { height, width } = useWindowDimensions();
+
     return (
         <div className="container">
             <div className="row pt-5 pb-5">
                 { ( () => {
                     /*
                     * If the screen size is shorter than 500 pixels, an error message will appear on the screen.
-                    * */
+                     */
                     if ( width >= 500 ) {
                         return (
-                            <Styles>
-                                <Table columns={ columns } data={ data }/>
-                            </Styles>
+                            <div>
+                                <Styles>
+                                    <Table columns={ columns } data={ data }/>
+                                </Styles>
+                            </div>
                         )
                     } else {
                         return (
