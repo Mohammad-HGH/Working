@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Slider from "react-slick";
 import ImportFiles from "../ImportFiles";
+import { Accordion } from "react-bootstrap";
 
 const Home = () => {
     const settings = {
@@ -149,30 +150,41 @@ const Home = () => {
                         </Slider>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-7">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur blanditiis deleniti ex, hic
-                        id, in ipsa magnam modi molestias mollitia perferendis perspiciatis quaerat recusandae veniam
-                        voluptatem? Dolore labore maiores perspiciatis.
+                <div className="row pb-5">
+                    <div className="col-md-7 col-12">
+                        <Accordion defaultActiveKey="0" flush>
+                            <Accordion.Item eventKey="0">
+                                <Accordion.Header>
+                                    ساختار وب سایت
+                                </Accordion.Header>
+                                <Accordion.Body className="text-end">
+                                    طراحان سایت هنگام طراحی قالب سایت معمولا با این موضوع رو برو هستند که محتوای اصلی
+                                    صفحات آماده نیست. در نتیجه طرح کلی دید درستی به کار فرما نمیدهد. اگر طراح بخواهد
+                                    دنبال متن های مرتبط بگردد تمرکزش از روی کار اصلی برداشته میشود و اینکار زمان بر
+                                    خواهد بود.
+                                </Accordion.Body>
+                            </Accordion.Item>
+                            <Accordion.Item eventKey="1">
+                                <Accordion.Header>
+                                    تکنولوژی بکار رفته
+                                </Accordion.Header>
+                                <Accordion.Body className="text-end">
+                                    طراحان سایت هنگام طراحی قالب سایت معمولا با این موضوع رو برو هستند که محتوای اصلی
+                                    صفحات آماده نیست. در نتیجه طرح کلی دید درستی به کار فرما نمیدهد. اگر طراح بخواهد
+                                    دنبال متن های مرتبط بگردد تمرکزش از روی کار اصلی برداشته میشود و اینکار زمان بر
+                                    خواهد بود.
+                                </Accordion.Body>
+                            </Accordion.Item>
+                        </Accordion>
                     </div>
-                    <div className="col-5">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor in inventore ipsam magni
-                        nesciunt quibusdam sit soluta totam. Iusto minus optio quas quia saepe! Blanditiis maiores
-                        placeat recusandae reiciendis vitae!
+                    <div className="col-md-5 col-12 d-flex align-items-center">
+                        طراحان سایت هنگام طراحی قالب سایت معمولا با این موضوع رو برو هستند که محتوای اصلی
+                        صفحات آماده نیست. در نتیجه طرح کلی دید درستی به کار فرما نمیدهد. اگر طراح بخواهد
+                        دنبال متن های مرتبط بگردد تمرکزش از روی کار اصلی برداشته میشود و اینکار زمان بر
+                        خواهد بود.
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-5">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci consequuntur
-                        culpa cumque doloribus, dolorum enim eos exercitationem fugit, inventore iure minima pariatur
-                        provident reiciendis rerum saepe tempore temporibus ullam!
-                    </div>
-                    <div className="col-7">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, architecto cupiditate
-                        doloremque dolorum eum expedita harum minima natus nostrum numquam obcaecati optio praesentium
-                        reiciendis repudiandae rerum sapiente suscipit tenetur ullam.
-                    </div>
-                </div>
+
             </div>
         </div> );
 };

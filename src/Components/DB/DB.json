@@ -12,5 +12,19 @@
     "email": "ali@exam.com",
     "password": "000000",
     "phone": "09330000000"
+  },
+  {
+    "id": 2,
+    "name": "helia",
+    "email": "helia@exam.com",
+    "password": "329431",
+    "phone": "09332254143"
+  },
+  {
+    "id": 3,
+    "name": "kiana",
+    "email": "kiana@exam.com",
+    "password": "212121",
+    "phone": "09213014875"
   }
 ]
