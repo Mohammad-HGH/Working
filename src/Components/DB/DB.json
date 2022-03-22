@@ -21,10 +21,10 @@
     "phone": "09332254143"
   },
   {
-    "id": 3,
-    "name": "kiana",
-    "email": "kiana@exam.com",
-    "password": "212121",
-    "phone": "09213014875"
+      "id": 3,
+      "name": "kiana",
+      "email": "kiana@exam.com",
+      "password": "212121",
+      "phone": "09213014875"
   }
 ]

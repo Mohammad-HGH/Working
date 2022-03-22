@@ -1,12 +1,12 @@
 import React from 'react';
-import { CSVLink } from "react-csv";
+import { CSVLink } from "react-csv"; // Import DWN CSV component
 import useWindowDimensions from '../useWindowDimensions';
 import styled from 'styled-components'
 import { useTable, useSortBy } from 'react-table'
 import data from '../DB/DB.json'
 
 
-
+// Table style
 const Styles = styled.div`
   padding: 1rem;
   display: flex;
@@ -38,6 +38,7 @@ const Styles = styled.div`
   }
 `
 
+// Sort Table Col Fn
 function Table( { columns, data } ) {
     const {
         getTableProps,
@@ -100,7 +101,12 @@ function Table( { columns, data } ) {
     )
 }
 
-const Admin = (props) => {
+
+/*
+* Main Fn
+*/
+const Admin = ( props ) => {
+
     const columns = [
         {
             Header: 'Name',
@@ -117,41 +123,44 @@ const Admin = (props) => {
         }
     ]
 
+    // Get Screen Size to optimize output
     const { height, width } = useWindowDimensions();
 
     return (
-        <div className="container">
-            <div className="row pt-5 pb-5">
-                { ( () => {
-                    /*
-                    * If the screen size is shorter than 500 pixels, an error message will appear on the screen.
-                     */
-                    if ( width >= 500 ) {
-                        return (
-                            <div>
-                                <Styles>
-                                    <Table columns={ columns } data={ data }/>
-                                </Styles>
-                            </div>
-                        )
-                    } else {
-                        return (
-                            <div className="alert alert-danger" role="alert">
-                                متاسفانه این صفحه برای تلفن مناسب نیست!
-                            </div>
-                        )
-                    }
-                } )() }
-                <div>
-                    <button className="btn btn-success w-auto">
-                        {/*     Download Table as .CSV file */ }
-                        <CSVLink data={ data } class="text-white">
-                            دانلود
-                            <i className="fa fa-download text-white me-2" aria-hidden="true"/>
-                        </CSVLink>
-                    </button>
+        <div className={ `${ props.className }` }>
+            <div className="container">
+                <div className="row pt-5 pb-5">
+                    { ( () => {
+                        /*
+                        * If the screen size is shorter than 500 pixels, an error message will appear on the screen.
+                         */
+                        if ( width >= 500 ) {
+                            return (
+                                <div>
+                                    <Styles>
+                                        <Table columns={ columns } data={ data }/>
 
+                                    </Styles>
 
+                                </div>
+                            )
+                        } else {
+                            return (
+                                <div className="alert alert-danger" role="alert">
+                                    متاسفانه این صفحه برای تلفن مناسب نیست!
+                                </div>
+                            )
+                        }
+                    } )() }
+                    <div>
+                        <button className="btn btn-success w-auto">
+                            {/* Download Table as .CSV file */ }
+                            <CSVLink data={ data } class="text-white">
+                                دانلود
+                                <i className="fa fa-download text-white me-2" aria-hidden="true"/>
+                            </CSVLink>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
