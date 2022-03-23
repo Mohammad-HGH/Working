@@ -27,6 +27,7 @@ const Home = () => {
         autoplaySpeed: 5000, rtl: true
     };
 
+
     return (
         <div className="content">
             <div className="container">
