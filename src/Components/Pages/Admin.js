@@ -126,6 +126,10 @@ const Admin = ( props ) => {
     const { height, width } = useWindowDimensions();
     let data = null;
     data = JSON.parse( localStorage.getItem( 'stored_data' ) )
+  
+   if (data === null) {
+    return <div className="p-5 h3">داده ای برای نمایش وجود ندارد</div>;
+  }
 
     return (
         <div className={ `${ props.className }` }>
